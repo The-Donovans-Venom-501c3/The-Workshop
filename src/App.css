@@ -1,17 +1,40 @@
-.topcanvas {
-  position: absolute;
-  display: none;
-  left: 0px;
-  top: 0px;
-  background-color: rgba(255, 255, 255, 0);
-  z-index: 1
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
-  height: 600px;
-  width: 100%;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  position: relative
+    margin-top: 2rem;
+    height: 600px;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: relative;
+}
+
+.iframe {
+    width: 96%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+.topcanvas {
+    position: absolute;
+    display: none;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 1;
+}
+
+.orange--button {
+    background-color: #e98427;
+    margin-top: 2rem;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 30px;
+    color: white;
 }
