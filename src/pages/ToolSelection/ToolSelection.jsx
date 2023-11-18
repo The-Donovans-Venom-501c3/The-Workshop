@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ToolSelection.css";
 import Eraser from "../../assets/eraser.png";
 import Highlighter from "../../assets/highlighter.png";
@@ -7,6 +7,9 @@ import Pencil from "../../assets/pencil.png";
 import Text from "../../assets/text.png";
 
 const ToolSelection = () => {
+
+    const [colorHex, setColorHex] = useState("#43da86");
+
     return (
         <div className="toolbar">
             <div className="color--container">
@@ -15,7 +18,8 @@ const ToolSelection = () => {
                     <input
                         className="color--picked"
                         type="color"
-                        value="#43da86"
+                        value={colorHex}
+                        onChange={(e) => setColorHex(e.target.value)}
                     />
                 </div>
 
@@ -24,36 +28,43 @@ const ToolSelection = () => {
                     <button
                         className="color--button"
                         style={{ backgroundColor: "#e98427" }}
+                        onClick={(e) => setColorHex("#e98427")}
                     />
 
                     <button
                         className="color--button"
                         style={{ backgroundColor: "#438342" }}
+                        onClick={(e) => setColorHex("#438342")}
                     />
 
                     <button
                         className="color--button"
                         style={{ backgroundColor: "#6f219e" }}
+                        onClick={(e) => setColorHex("#6f219e")}
                     />
 
                     <button
                         className="color--button"
                         style={{ backgroundColor: "#e9bb18" }}
+                        onClick={(e) => setColorHex("#e9bb18")}
                     />
 
                     <button
                         className="color--button"
                         style={{ backgroundColor: "#59371d" }}
+                        onClick={(e) => setColorHex("#59371d")}
                     />
 
                     <button
                         className="color--button"
                         style={{ backgroundColor: "#1c1a1a" }}
+                        onClick={(e) => setColorHex("#1c1a1a")}
                     />
 
                     <button
                         className="color--button"
                         style={{ backgroundColor: "#fff2e5" }}
+                        onClick={(e) => setColorHex("#fff2e5")}
                     />
                 </div>
             </div>
