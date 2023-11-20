@@ -1,4 +1,5 @@
-.toolbar {}
+.toolbar {
+}
 
 .color--container {
     display: flex;
@@ -38,4 +39,21 @@
     justify-items: center;
     margin-top: 5rem;
     gap: 10px;
+}
+
+.tools--container {
+    display: flex;
+    align-items: flex-end;
+    height: 400px;
+}
+
+/* .tool--container {
+} */
+
+.hidden {
+    display: none;
+}
+
+.active {
+    margin-bottom: 3rem;
 }
