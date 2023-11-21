@@ -3,7 +3,7 @@ import Iframe from "react-iframe";
 import { ReactSketchCanvas } from "react-sketch-canvas";
 import "../../App.css";
 
-export default function Home() {
+export default function Home({ color }) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get("id");

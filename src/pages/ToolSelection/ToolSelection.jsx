@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./ToolSelection.css";
 import { ToolsData } from "../../data/ToolsData";
 
-const ToolSelection = () => {
-    const [colorHex, setColorHex] = useState("#43da86");
+const ToolSelection = ({ setColor }) => {
+    // const [colorHex, setColorHex] = useState("#43da86");
     const [activeTool, setActiveTool] = useState("");
 
     const handleToolClick = (toolName) => {
@@ -16,7 +16,7 @@ const ToolSelection = () => {
                 <button
                     className="color--button"
                     style={{ backgroundColor: color }}
-                    onClick={(e) => setColorHex(color)}
+                    onClick={(e) => setColor(color)}
                 />
             );
         });
