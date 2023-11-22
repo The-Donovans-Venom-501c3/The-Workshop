@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ToolSelection.css";
 import { ToolsData } from "../../data/ToolsData";
 
-const ToolSelection = ({ setColor, setFont, colorHex, sketchRef }) => {
+const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, idx }) => {
     const [activeTool, setActiveTool] = useState("");
 
     const handleToolClick = (tool) => {
@@ -35,6 +35,18 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef }) => {
         }
     };
 
+
+    const handleAdd = () => {
+        const abc = [...val, []]
+        setVal(abc)
+    }
+
+    const handleDelete = () => {
+        const deletVal = [...val]
+        deletVal.splice(idx, 1)
+        setVal(deletVal)
+    }
+
     const colorChoicesRender = (colors) => {
         return colors.map((color) => {
             return (
@@ -51,9 +63,8 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef }) => {
         return (
             <div
                 key={tool.name}
-                className={`color--container ${
-                    activeTool !== tool.name ? "hidden" : ""
-                }`}
+                className={`color--container ${activeTool !== tool.name ? "hidden" : ""
+                    }`}
             >
                 <div className="color--left--container">
                     <h3>Color choice:</h3>
@@ -77,9 +88,8 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef }) => {
         return (
             <div
                 key={tool.name}
-                className={`tool-container ${
-                    tool.name === activeTool ? "active" : ""
-                }`}
+                className={`tool-container ${tool.name === activeTool ? "active" : ""
+                    }`}
             >
                 <img
                     src={tool.image}
@@ -107,6 +117,14 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef }) => {
                             >
                                 Erase All
                             </button>
+                        </div>
+                    )}
+
+                    {activeTool === "Text" && (
+                        <div >
+                            <button onClick={() => handleAdd()}>Add</button>
+                            <button onClick={() => handleDelete()}>x</button>
+
                         </div>
                     )}
                 </div>
