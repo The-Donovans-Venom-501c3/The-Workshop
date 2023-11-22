@@ -2,12 +2,37 @@ import React, { useState } from "react";
 import "./ToolSelection.css";
 import { ToolsData } from "../../data/ToolsData";
 
-const ToolSelection = ({ setColor }) => {
-    // const [colorHex, setColorHex] = useState("#43da86");
+const ToolSelection = ({ setColor, setFont, colorHex, sketchRef }) => {
     const [activeTool, setActiveTool] = useState("");
 
-    const handleToolClick = (toolName) => {
-        setActiveTool(toolName === activeTool ? "" : toolName);
+    const handleToolClick = (tool) => {
+        setActiveTool(tool.name === activeTool ? "" : tool.name);
+        setFont(tool.name === activeTool ? 0 : tool.fontSize);
+
+        // If it's eraser mode
+        if (tool.name === "Eraser") {
+            if (sketchRef.current) {
+                // Set erase mode using the sketchRef
+                sketchRef.current.eraseMode(true);
+            }
+            // The other tools mode (marker, pen, pencil, etc)
+        } else {
+            if (sketchRef.current) {
+                // Set erase mode to false using the sketchRef
+                sketchRef.current.eraseMode(false);
+            }
+        }
+    };
+
+    const handleEraseAll = () => {
+        // Show a confirmation dialog
+        const userConfirmed = window.confirm(
+            "Do you want to erase everything?"
+        );
+
+        if (userConfirmed && sketchRef.current) {
+            sketchRef.current.clearCanvas();
+        }
     };
 
     const colorChoicesRender = (colors) => {
@@ -16,7 +41,7 @@ const ToolSelection = ({ setColor }) => {
                 <button
                     className="color--button"
                     style={{ backgroundColor: color }}
-                    onClick={(e) => setColor(color)}
+                    onClick={() => setColor(color)}
                 />
             );
         });
@@ -24,11 +49,11 @@ const ToolSelection = ({ setColor }) => {
 
     const colorsRender = ToolsData.map((tool) => {
         return (
-
             <div
                 key={tool.name}
-                className={`color--container ${activeTool !== tool.name ? "hidden" : ""
-                    }`}
+                className={`color--container ${
+                    activeTool !== tool.name ? "hidden" : ""
+                }`}
             >
                 <div className="color--left--container">
                     <h3>Color choice:</h3>
@@ -37,7 +62,7 @@ const ToolSelection = ({ setColor }) => {
                         className="color--picked"
                         type="color"
                         value={colorHex}
-                        onChange={(e) => setColorHex(e.target.value)}
+                        onChange={(e) => setColor(e.target.value)}
                     />
                 </div>
 
@@ -45,8 +70,6 @@ const ToolSelection = ({ setColor }) => {
                     {colorChoicesRender(tool.colors)}
                 </div>
             </div>
-
-
         );
     });
 
@@ -54,13 +77,14 @@ const ToolSelection = ({ setColor }) => {
         return (
             <div
                 key={tool.name}
-                className={`tool-container ${tool.name === activeTool ? "active" : ""
-                    }`}
+                className={`tool-container ${
+                    tool.name === activeTool ? "active" : ""
+                }`}
             >
                 <img
                     src={tool.image}
                     alt={tool.name}
-                    onClick={() => handleToolClick(tool.name)}
+                    onClick={() => handleToolClick(tool)}
                 />
             </div>
         );
@@ -72,17 +96,26 @@ const ToolSelection = ({ setColor }) => {
                 {colorsRender}
 
                 {/* Need to Create Component Later */}
-                <div className="tools--container">{toolsRender}</div>
+                <div className="tools--container">
+                    <div className="tools">{toolsRender}</div>
+
+                    {activeTool === "Eraser" && (
+                        <div className="eraser--container">
+                            <button
+                                className="eraser--button"
+                                onClick={handleEraseAll}
+                            >
+                                Erase All
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         );
-
     else {
         return (
             <div className="toolbar">
-
-                <div
-                    className={`color--container`}
-                >
+                <div className={`color--container`}>
                     <div className="color--left--container">
                         <h3>Color choice:</h3>
 
@@ -90,23 +123,29 @@ const ToolSelection = ({ setColor }) => {
                             className="color--picked"
                             type="color"
                             value={colorHex}
-                            onChange={(e) => setColorHex(e.target.value)}
+                            onChange={(e) => setColor(e.target.value)}
                         />
                     </div>
 
                     <div className="color--right--container">
-                        {colorChoicesRender(["#e98427", "#438342", "#6f219e",
+                        {colorChoicesRender([
+                            "#e98427",
+                            "#438342",
+                            "#6f219e",
                             "#e9bb18",
                             "#59371d",
                             "#1c1a1a",
-                            "#fff2e5"])}
+                            "#fff2e5",
+                        ])}
                     </div>
                 </div>
 
                 {/* Need to Create Component Later */}
-                <div className="tools--container">{toolsRender}</div>
+                <div className="tools--container">
+                    <div className="tools">{toolsRender}</div>
+                </div>
             </div>
-        )
+        );
     }
 };
 

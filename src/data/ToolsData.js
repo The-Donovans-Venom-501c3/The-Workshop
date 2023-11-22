@@ -1,13 +1,14 @@
-import Marker from "../assets/marker.png";
-import Pencil from "../assets/pencil.png";
-import Highlighter from "../assets/highlighter.png";
-import Eraser from "../assets/eraser.png";
-import Text from "../assets/text.png";
+import Brush from "../assets/Brush_Cartoon.svg";
+import Pen from "../assets/Pen_Cartoon.svg";
+import Pencil from "../assets/Pencil_Cartoon.svg";
+import Highlighter from "../assets/Highlighter_Cartoon.svg";
+import Eraser from "../assets/Eraser_Cartoon.svg";
+import Text from "../assets/Text_Cartoon.svg";
 
 export const ToolsData = [
     {
-        name: "Marker",
-        image: Marker,
+        name: "Brush",
+        image: Brush,
         colors: [
             "#e98427",
             "#438342",
@@ -17,21 +18,7 @@ export const ToolsData = [
             "#1c1a1a",
             "#fff2e5",
         ],
-        active: false,
-    },
-    {
-        name: "Pencil",
-        image: Pencil,
-        colors: [
-            "#e98427",
-            "#438342",
-            "#6f219e",
-            "#e9bb18",
-            "#59371d",
-            "#1c1a1a",
-            "#fff2e5",
-        ],
-        active: false,
+        fontSize: 12,
     },
     {
         name: "Highlighter",
@@ -45,7 +32,35 @@ export const ToolsData = [
             "#8ce3e9",
             "#ffe7d0",
         ],
-        active: false,
+        fontSize: 8,
+    },
+    {
+        name: "Pen",
+        image: Pen,
+        colors: [
+            "#e98427",
+            "#438342",
+            "#6f219e",
+            "#e9bb18",
+            "#59371d",
+            "#1c1a1a",
+            "#fff2e5",
+        ],
+        fontSize: 2,
+    },
+    {
+        name: "Pencil",
+        image: Pencil,
+        colors: [
+            "#e98427",
+            "#438342",
+            "#6f219e",
+            "#e9bb18",
+            "#59371d",
+            "#1c1a1a",
+            "#fff2e5",
+        ],
+        fontSize: 2,
     },
     {
         name: "Eraser",
@@ -59,7 +74,7 @@ export const ToolsData = [
             "#1c1a1a",
             "#fff2e5",
         ],
-        active: false,
+        fontSize: 12,
     },
     {
         name: "Text",
@@ -73,6 +88,5 @@ export const ToolsData = [
             "#1c1a1a",
             "#fff2e5",
         ],
-        active: false,
     },
 ];

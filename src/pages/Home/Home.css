@@ -1,0 +1,14 @@
+/* border: "",
+        borderRadius: "0.25rem",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        zIndex: 1, */
+
+.canvas {
+    border: 0.0625rem solid #9c9c9c;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
