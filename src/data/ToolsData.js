@@ -46,7 +46,7 @@ export const ToolsData = [
             "#1c1a1a",
             "#fff2e5",
         ],
-        fontSize: 2,
+        fontSize: 5,
     },
     {
         name: "Pencil",
@@ -88,5 +88,6 @@ export const ToolsData = [
             "#1c1a1a",
             "#fff2e5",
         ],
+        fontSize: 12,
     },
 ];
