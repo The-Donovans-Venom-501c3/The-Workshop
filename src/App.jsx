@@ -17,7 +17,16 @@ function App() {
 
     return (
         <div className="app">
-            <Home color={colorHex} fontSize={fontSize} sketchRef={sketchRef} val={val} setVal={setVal} idx={idx} setIdx={setIdx} />
+            <Home
+                color={colorHex}
+                fontSize={fontSize}
+                sketchRef={sketchRef}
+                val={val}
+                setVal={setVal}
+                idx={idx}
+                setIdx={setIdx}
+                toggle={toggle}
+            />
             <button className="orange--button" onClick={handleToggle}>
                 {toggle ? "Use Book" : "Interact!"}
             </button>

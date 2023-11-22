@@ -1,46 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Iframe from "react-iframe";
 import { ReactSketchCanvas } from "react-sketch-canvas";
-import Draggable from 'react-draggable';
-import "../../App.css";
+import Draggable from "react-draggable";
+import "../Home/Home.css";
 
-export default function Home({ color, fontSize, sketchRef, val, setVal, idx, setIdx }) {
+export default function Home({
+    color,
+    fontSize,
+    sketchRef,
+    val,
+    setVal,
+    idx,
+    setIdx,
+    toggle,
+}) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get("id");
 
-    //console.log("fontSize:", fontSize);
-
-
     const handleChange = (onChangeValue, i) => {
-        const inputdata = [...val]
+        const inputdata = [...val];
         inputdata[i] = onChangeValue.target.value;
-        setVal(inputdata)
-    }
+        setVal(inputdata);
+    };
+
+    useEffect(() => {
+        // When the toggle is false, clear all the text inputs
+        if (!toggle) {
+            setVal([]);
+        }
+    }, [toggle]);
 
     return (
-        <>
-            <div align="center" className="container">
+        <div align="center" className="container">
+            {val.map((data, i) => {
+                return (
+                    <Draggable>
+                        <div
+                            key={i}
+                            className="input--container"
+                            onClick={() => setIdx(i)}
+                        >
+                            <input
+                                className="input"
+                                value={data}
+                                onChange={(e) => handleChange(e, i)}
+                            />
+                        </div>
+                    </Draggable>
+                );
+            })}
 
-                <div className="overlay">
-                    {val.map((data, i) => {
-                        return (
-                            <Draggable >
-                                <div className="box" key={i} onClick={() => setIdx(i)}>
-                                    <input value={data} onChange={e => handleChange(e, i)} />
-                                </div>
-                            </Draggable>
-                        )
-                    })}
-                </div>
+            <Iframe
+                url={`https://heyzine.com/flip-book/${id}.html`}
+                allowfullscreen="allowfullscreen"
+                className="iframe"
+            />
 
-
-                <Iframe
-                    url={`https://heyzine.com/flip-book/${id}.html`}
-                    allowfullscreen="allowfullscreen"
-                    className="iframe"
-                />
-
+            {toggle && (
                 <ReactSketchCanvas
                     ref={sketchRef}
                     width="100%"
@@ -50,7 +67,7 @@ export default function Home({ color, fontSize, sketchRef, val, setVal, idx, set
                     canvasColor="transparent"
                     className="canvas"
                 />
-            </div>
-        </>
+            )}
+        </div>
     );
 }
