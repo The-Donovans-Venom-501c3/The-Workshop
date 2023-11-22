@@ -88,6 +88,6 @@ export const ToolsData = [
             "#1c1a1a",
             "#fff2e5",
         ],
-        fontSize: 12,
+        fontSize: 0,
     },
 ];

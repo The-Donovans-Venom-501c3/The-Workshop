@@ -2,8 +2,26 @@ import React, { useState } from "react";
 import "./ToolSelection.css";
 import { ToolsData } from "../../data/ToolsData";
 
-const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, idx }) => {
+const ToolSelection = ({
+    setColor,
+    setFont,
+    colorHex,
+    sketchRef,
+    val,
+    setVal,
+    idx,
+}) => {
     const [activeTool, setActiveTool] = useState("");
+
+    const active = (toolName) => {
+        if (toolName === activeTool && toolName === "Text")
+            return "active--text";
+        else if (toolName === activeTool) {
+            return "active";
+        } else {
+            return "";
+        }
+    };
 
     const handleToolClick = (tool) => {
         setActiveTool(tool.name === activeTool ? "" : tool.name);
@@ -35,17 +53,16 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, id
         }
     };
 
-
     const handleAdd = () => {
-        const abc = [...val, []]
-        setVal(abc)
-    }
+        const abc = [...val, []];
+        setVal(abc);
+    };
 
     const handleDelete = () => {
-        const deletVal = [...val]
-        deletVal.splice(idx, 1)
-        setVal(deletVal)
-    }
+        const deletVal = [...val];
+        deletVal.splice(idx, 1);
+        setVal(deletVal);
+    };
 
     const colorChoicesRender = (colors) => {
         return colors.map((color) => {
@@ -63,8 +80,9 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, id
         return (
             <div
                 key={tool.name}
-                className={`color--container ${activeTool !== tool.name ? "hidden" : ""
-                    }`}
+                className={`color--container ${
+                    activeTool !== tool.name ? "hidden" : ""
+                }`}
             >
                 <div className="color--left--container">
                     <h3>Color choice:</h3>
@@ -88,12 +106,14 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, id
         return (
             <div
                 key={tool.name}
-                className={`tool-container ${tool.name === activeTool ? "active" : ""
-                    }`}
+                className={`tool-container 
+                ${active(tool.name)}
+                ${tool.name === "Text" ? "negative--bottom" : ""}`}
             >
                 <img
                     src={tool.image}
                     alt={tool.name}
+                    className="image"
                     onClick={() => handleToolClick(tool)}
                 />
             </div>
@@ -105,7 +125,6 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, id
             <div className="toolbar">
                 {colorsRender}
 
-                {/* Need to Create Component Later */}
                 <div className="tools--container">
                     <div className="tools">{toolsRender}</div>
 
@@ -121,10 +140,19 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, id
                     )}
 
                     {activeTool === "Text" && (
-                        <div >
-                            <button onClick={() => handleAdd()}>Add</button>
-                            <button onClick={() => handleDelete()}>x</button>
-
+                        <div className="text--container">
+                            <button
+                                className="text--button text--orange"
+                                onClick={() => handleAdd()}
+                            >
+                                Add Text
+                            </button>
+                            <button
+                                className="text--button text--green"
+                                onClick={() => handleDelete()}
+                            >
+                                Delete Text
+                            </button>
                         </div>
                     )}
                 </div>
@@ -158,7 +186,6 @@ const ToolSelection = ({ setColor, setFont, colorHex, sketchRef, val, setVal, id
                     </div>
                 </div>
 
-                {/* Need to Create Component Later */}
                 <div className="tools--container">
                     <div className="tools">{toolsRender}</div>
                 </div>
