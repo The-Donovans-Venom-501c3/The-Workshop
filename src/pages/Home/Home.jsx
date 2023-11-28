@@ -18,6 +18,15 @@ export default function Home({
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get("id");
 
+    const increaseWidth = (e) => {
+        let numberOfCharacters = e.target.value.length;
+
+        if (numberOfCharacters >= 10) {
+            let length = numberOfCharacters + "ch";
+            e.target.style.width = length;
+        }
+    };
+
     const handleChange = (onChangeValue, i) => {
         const inputdata = [...val];
         inputdata[i] = onChangeValue.target.value;
@@ -43,6 +52,7 @@ export default function Home({
                         >
                             <input
                                 className="input"
+                                onInput={increaseWidth}
                                 value={data}
                                 onChange={(e) => handleChange(e, i)}
                             />
