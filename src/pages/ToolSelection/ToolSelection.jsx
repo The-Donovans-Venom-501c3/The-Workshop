@@ -163,7 +163,7 @@ const ToolSelection = ({
             <div className="toolbar">
                 <div className={`color--container`}>
                     <div className="color--left--container">
-                        <h3>Color choice:</h3>
+                        <h3 class>Color choice:</h3>
 
                         <input
                             className="color--picked"
