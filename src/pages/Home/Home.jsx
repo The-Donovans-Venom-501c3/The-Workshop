@@ -14,10 +14,6 @@ export default function Home({
     setIdx,
     toggle,
 }) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const id = urlParams.get("id");
-
     const increaseWidth = (e) => {
         let numberOfCharacters = e.target.value.length;
 
@@ -62,7 +58,7 @@ export default function Home({
             })}
 
             <Iframe
-                url={`https://heyzine.com/flip-book/${id}.html`}
+                url={`https://thedonovan.aflip.in/873f45a506.html`}
                 allowfullscreen="allowfullscreen"
                 className="iframe"
             />
