@@ -34,7 +34,7 @@ export default function Home({
         if (!toggle) {
             setVal([]);
         }
-    }, [toggle]);
+    }, [toggle, setVal]);
 
     return (
         <div align="center" className="container">
